@@ -7,14 +7,8 @@ def test_dark_theme_by_time():
     """
     current_time = time(hour=23)
     # TODO переключите темную тему в зависимости от времени суток (с 22 до 6 часов утра - ночь)
-    is_dark_theme = None
-    if current_time >= time(22) or current_time <= time(6):
-        print('Темная тема')
-        return True
-    else:
-        print('Светлая тема')
-        return False
 
+    is_dark_theme = current_time.hour not in range(6, 22)
     assert is_dark_theme is True
 
 
@@ -102,10 +96,11 @@ def test_readable_function():
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
 
-def readable_function(func, **kwargs):
+def readable_function(func, *args, **kwargs):
     func_name = func.__name__.replace('_', ' ').title()
     func_args = ', '.join([f"{value}" for value in kwargs.values()])
     actual_result = f"{func_name} [{func_args}]"
+    print(actual_result)
     return actual_result
 
 
